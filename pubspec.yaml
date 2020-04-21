@@ -32,7 +32,9 @@ dependencies:
   firebase: 7.1.0
   firebase_web: 5.0.9
   gradient_app_bar: ^0.0.1
-  emoji_picker: ^0.1.0
+  #emoji_picker: ^0.1.0
+  agora_rtc_engine: ^1.0.8
+  permission_handler: ^3.0.0
 
 dev_dependencies:
   flutter_test:

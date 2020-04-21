@@ -8,6 +8,7 @@ import 'package:telemedicina/constants/strings.dart';
 import 'package:telemedicina/models/message.dart';
 import 'package:telemedicina/models/users.dart';
 import 'package:telemedicina/services/auth_methods.dart';
+import 'package:telemedicina/utils/call_utilities.dart';
 import 'package:telemedicina/utils/universal_variables.dart';
 import 'package:telemedicina/widgets/appbar.dart';
 import 'package:telemedicina/widgets/custom_tile.dart';
@@ -364,7 +365,11 @@ class _ChatScreenState extends State<ChatScreen> {
           icon: Icon(
             Icons.video_call,
           ),
-          onPressed: () {},
+          onPressed: () => CallUtils.dial(
+            from: sender,
+            to: widget.receiver,
+            context: context,
+          ),
         ),
         IconButton(
           icon: Icon(
