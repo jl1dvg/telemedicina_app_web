@@ -38,6 +38,24 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "cloud_firestore",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "cloud_firestore_platform_interface",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_platform_interface-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "cloud_firestore_web",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "collection",
       "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.12",
       "packageUri": "lib/",
@@ -158,8 +176,32 @@
       "languageVersion": "1.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/nested-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "path",
       "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "path_provider",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "path_provider_macos",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "path_provider_platform_interface",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_platform_interface-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -182,10 +224,22 @@
       "languageVersion": "2.4"
     },
     {
+      "name": "platform",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
+    },
+    {
       "name": "plugin_platform_interface",
       "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.1"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
     },
     {
       "name": "quiver",
@@ -260,13 +314,13 @@
       "languageVersion": "2.6"
     },
     {
-      "name": "telemedicina",
+      "name": "Skype_clone",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-04-21T07:07:52.902978Z",
+  "generated": "2020-04-21T23:10:56.547833Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.18.0.flutter-eea9717938"
 }

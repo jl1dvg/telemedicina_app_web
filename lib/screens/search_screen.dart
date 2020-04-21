@@ -1,11 +1,11 @@
+import 'package:Skype_clone/models/users.dart';
+import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/screens/chatscreens/chat_screen.dart';
+import 'package:Skype_clone/utils/universal_variables.dart';
+import 'package:Skype_clone/widgets/custom_tile.dart';
 import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:telemedicina/models/users.dart';
-import 'package:telemedicina/screens/chatscreens/chat_screen.dart';
-import 'package:telemedicina/services/auth_methods.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
-import 'package:telemedicina/widgets/custom_tile.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key key}) : super(key: key);
@@ -15,7 +15,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  AuthMethods _authMethods = AuthMethods();
+  FirebaseRepository _repository = FirebaseRepository();
 
   List<Usuario> userList;
   String query = "";
@@ -25,8 +25,8 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
 
-    _authMethods.getCurrentUser().then((User user) {
-      _authMethods.fetchAllUsers(user).then((List<Usuario> list) {
+    _repository.getCurrentUser().then((User user) {
+      _repository.fetchAllUsers(user).then((List<Usuario> list) {
         setState(() {
           userList = list;
         });

@@ -1,5 +1,5 @@
+import 'package:Skype_clone/utils/universal_variables.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
 

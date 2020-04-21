@@ -1,6 +1,7 @@
+import 'package:Skype_clone/models/call.dart';
+import 'package:Skype_clone/resources/call_methods.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/models/call.dart';
-import 'package:telemedicina/services/call_methods.dart';
+
 
 import '../call_screen.dart';
 

@@ -8,35 +8,40 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="telemedicina">
+  <meta name="apple-mobile-web-app-title" content="Skype_clone">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
-  <title>telemedicina</title>
+  <title>Skype_clone</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- Add the entire Firebase JavaScript SDK -->
-<!--    <script src="/__/firebase/7.2.1/firebase-app.js"></script>-->
-<!--    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>-->
-<!--    <script src="/__/firebase/7.2.1/firebase-auth.js"></script>-->
-<!--    <script src="/__/firebase/7.2.1/firebase-firestore.js"></script>-->
-<!--    <script src="/__/firebase/7.2.1/firebase-storage.js"></script>-->
-
 <!--  From CDN-->
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<!--Initialize Firebase-->
-<!--  <script src="/__/firebase/init.js"></script>-->
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyB3XaTquUje8JAFGVVR3nTRemEsMHHLdAY",
+    authDomain: "skype-426f7.firebaseapp.com",
+    databaseURL: "https://skype-426f7.firebaseio.com",
+    projectId: "skype-426f7",
+    storageBucket: "skype-426f7.appspot.com",
+    messagingSenderId: "328407005780",
+    appId: "1:328407005780:web:ffb997600969c8d71d4bc1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
@@ -44,6 +49,6 @@
       });
     }
   </script>
-<script src="main.dart.js" type="application/javascript"></script>
+  <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

@@ -1,17 +1,14 @@
-import 'package:firebase/firebase.dart';
-import 'package:firebase/firestore.dart';
-//import 'package:firebase_web/firebase.dart';
-//import 'package:firebase_web/firestore.dart';
+import 'package:Skype_clone/constants/strings.dart';
+import 'package:Skype_clone/models/message.dart';
+import 'package:Skype_clone/models/users.dart';
+import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/utils/call_utilities.dart';
+import 'package:Skype_clone/utils/universal_variables.dart';
+import 'package:Skype_clone/widgets/appbar.dart';
+import 'package:Skype_clone/widgets/custom_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:telemedicina/constants/strings.dart';
-import 'package:telemedicina/models/message.dart';
-import 'package:telemedicina/models/users.dart';
-import 'package:telemedicina/services/auth_methods.dart';
-import 'package:telemedicina/utils/call_utilities.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
-import 'package:telemedicina/widgets/appbar.dart';
-import 'package:telemedicina/widgets/custom_tile.dart';
 
 class ChatScreen extends StatefulWidget {
   final Usuario receiver;
@@ -24,9 +21,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController textFieldController = TextEditingController();
-  //final WebFirestore.Firestore webFirestore = WebFirebase.firestore();
-
-  AuthMethods _authMethods = AuthMethods();
+  FirebaseRepository _repository = FirebaseRepository();
 
   ScrollController _listScrollController = ScrollController();
 
@@ -40,14 +35,14 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
 
-    _authMethods.getCurrentUser().then((user) {
-      _currentUserId = user.uid;
+    _repository.getCurrentUser().then((usuario) {
+      _currentUserId = usuario.uid;
 
       setState(() {
         sender = Usuario(
-          uid: user.uid,
-          name: user.displayName,
-          profilePhoto: user.photoURL,
+          uid: usuario.uid,
+          name: usuario.displayName,
+          profilePhoto: usuario.photoURL,
         );
       });
     });
@@ -71,12 +66,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget messageList() {
     return StreamBuilder(
-      stream: firestore()
+      stream: Firestore.instance
           .collection(MESSAGES_COLLECTION)
-          .doc(_currentUserId)
+          .document(_currentUserId)
           .collection(widget.receiver.uid)
-          .orderBy(TIMESTAMP_FIELD, "desc")
-          .onSnapshot,
+          .orderBy(TIMESTAMP_FIELD, descending: true)
+          .snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.data == null) {
           return Center(child: CircularProgressIndicator());
@@ -91,11 +86,10 @@ class _ChatScreenState extends State<ChatScreen> {
          });
         return ListView.builder(
           padding: EdgeInsets.all(10),
-          itemCount: snapshot.data.docs.length,
-          reverse: true,
-          controller: _listScrollController,
+          itemCount: snapshot.data.documents.length,
           itemBuilder: (context, index) {
-            return chatMessageItem(snapshot.data.docs[index]);
+            // mention the arrow syntax if you get the time
+            return chatMessageItem(snapshot.data.documents[index]);
           },
         );
       },
@@ -103,20 +97,22 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget chatMessageItem(DocumentSnapshot snapshot) {
+    Message _message = Message.fromMap(snapshot.data);
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       child: Container(
-        alignment: snapshot.get('senderId') == _currentUserId
+        alignment: _message.senderId == _currentUserId
             ? Alignment.centerRight
             : Alignment.centerLeft,
-        child: snapshot.get('senderId') == _currentUserId
-            ? senderLayout(snapshot)
-            : receiverLayout(snapshot),
+        child: _message.senderId == _currentUserId
+            ? senderLayout(_message)
+            : receiverLayout(_message),
       ),
     );
   }
 
-  Widget senderLayout(DocumentSnapshot snapshot) {
+  Widget senderLayout(Message message) {
     Radius messageRadius = Radius.circular(10);
 
     return Container(
@@ -133,14 +129,14 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       child: Padding(
         padding: EdgeInsets.all(10),
-        child: getMessage(snapshot),
+        child: getMessage(message),
       ),
     );
   }
 
-  getMessage(DocumentSnapshot snapshot) {
+  getMessage(Message message) {
     return Text(
-      snapshot.get('message'),
+      message.message,
       style: TextStyle(
         color: Colors.white,
         fontSize: 16.0,
@@ -148,7 +144,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget receiverLayout(DocumentSnapshot snapshot) {
+  Widget receiverLayout(Message message) {
     Radius messageRadius = Radius.circular(10);
 
     return Container(
@@ -165,12 +161,11 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       child: Padding(
         padding: EdgeInsets.all(10),
-        child: getMessage(snapshot),
+        child: getMessage(message),
       ),
     );
   }
 
-  //barra de control para chat
   Widget chatControls() {
     setWritingTo(bool val) {
       setState(() {
@@ -200,7 +195,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Contenido y herramientas.",
+                            "Content and tools",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -216,29 +211,28 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: <Widget>[
                       ModalTile(
                         title: "Media",
-                        subtitle: "Compartir fotos y videos",
+                        subtitle: "Share Photos and Video",
                         icon: Icons.image,
                       ),
                       ModalTile(
-                          title: "Archivos",
-                          subtitle: "Compartir Archivos",
+                          title: "File",
+                          subtitle: "Share files",
                           icon: Icons.tab),
                       ModalTile(
-                          title: "Contactos",
-                          subtitle: "Compartir Contactos",
+                          title: "Contact",
+                          subtitle: "Share contacts",
                           icon: Icons.contacts),
                       ModalTile(
-                          title: "Ubicación",
-                          subtitle: "Comparte una ubicación",
+                          title: "Location",
+                          subtitle: "Share a location",
                           icon: Icons.add_location),
                       ModalTile(
-                          title: "Programar llamada",
-                          subtitle:
-                              "Organice una llamada de telemedicina y reciba recordatorios",
+                          title: "Schedule Call",
+                          subtitle: "Arrange a skype call and get reminders",
                           icon: Icons.schedule),
                       ModalTile(
-                          title: "Crear encuesta",
-                          subtitle: "Compartir encuestas",
+                          title: "Create Poll",
+                          subtitle: "Share polls",
                           icon: Icons.poll)
                     ],
                   ),
@@ -248,7 +242,6 @@ class _ChatScreenState extends State<ChatScreen> {
           });
     }
 
-    //Funcion para enviar mensajes
     sendMessage() {
       var text = textFieldController.text;
 
@@ -256,7 +249,7 @@ class _ChatScreenState extends State<ChatScreen> {
         receiverId: widget.receiver.uid,
         senderId: sender.uid,
         message: text,
-        timestamp: FieldValue.serverTimestamp(),
+        timestamp: Timestamp.now(),
         type: 'text',
       );
 
@@ -266,10 +259,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
       textFieldController.text = "";
 
-      _authMethods.addMessageToDb(_message, sender, widget.receiver);
+      _repository.addMessageToDb(_message, sender, widget.receiver);
     }
 
-    //textbox para escribir un mensaje
     return Container(
       padding: EdgeInsets.all(10),
       child: Row(
@@ -300,7 +292,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     : setWritingTo(false);
               },
               decoration: InputDecoration(
-                hintText: "Escribe un mensaje",
+                hintText: "Type a message",
                 hintStyle: TextStyle(
                   color: UniversalVariables.greyColor,
                 ),

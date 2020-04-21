@@ -1,8 +1,7 @@
+import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/utils/universal_variables.dart';
 import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:telemedicina/services/auth_methods.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,7 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final AuthMethods _authMethods = AuthMethods();
+  FirebaseRepository _repository = FirebaseRepository();
+
   bool isLoginPressed = false;
 
   @override
@@ -35,15 +35,15 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget loginButton() {
     return FlatButton(
-      padding: EdgeInsets.all(35),
-      child: Text(
-        "LOGIN",
-        style: TextStyle(
-            fontSize: 35, fontWeight: FontWeight.w900, letterSpacing: 1.2),
-      ),
-      onPressed: () => performLogin(),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    );
+        padding: EdgeInsets.all(35),
+        child: Text(
+          "LOGIN",
+          style: TextStyle(
+              fontSize: 35, fontWeight: FontWeight.w900, letterSpacing: 1.2),
+        ),
+        onPressed: () => performLogin(),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      );
   }
 
   void performLogin() {
@@ -53,7 +53,8 @@ class LoginScreenState extends State<LoginScreen> {
       isLoginPressed = true;
     });
 
-    _authMethods.singIn().then((User user) {
+    _repository.signIn().then((User user) {
+      print("something");
       if (user != null) {
         authenticateUser(user);
       } else {
@@ -62,14 +63,14 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void authenticateUser(user) {
-    _authMethods.authenticateUser(user).then((isNewUser) {
+  void authenticateUser(User user) {
+    _repository.authenticateUser(user).then((isNewUser) {
       setState(() {
         isLoginPressed = false;
       });
 
       if (isNewUser) {
-        _authMethods.addDataToDb(user).then((value) {
+        _repository.addDataToDb(user).then((value) {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
             return HomeScreen();

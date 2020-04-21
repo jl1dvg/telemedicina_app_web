@@ -1,10 +1,10 @@
 import 'dart:math';
 
+import 'package:Skype_clone/models/call.dart';
+import 'package:Skype_clone/models/users.dart';
+import 'package:Skype_clone/resources/call_methods.dart';
+import 'package:Skype_clone/screens/callscreens/call_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/models/call.dart';
-import 'package:telemedicina/models/users.dart';
-import 'package:telemedicina/screens/callscreens/call_screen.dart';
-import 'package:telemedicina/services/call_methods.dart';
 
 class CallUtils {
   static final CallMethods callMethods = CallMethods();

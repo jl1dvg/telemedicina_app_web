@@ -1,5 +1,9 @@
 # This is a generated file; do not edit or check into version control.
 agora_rtc_engine=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/agora_rtc_engine-1.0.10/
+cloud_firestore=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.5/
+cloud_firestore_web=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/
 firebase_core=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.4+3/
 firebase_core_web=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+path_provider=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.7/
+path_provider_macos=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+1/
 permission_handler=/Users/jl1dvg/development/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler-3.3.0/

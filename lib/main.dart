@@ -1,21 +1,13 @@
-import 'package:firebase/firebase.dart' as WebFirebase;
+import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/screens/home_screen.dart';
+import 'package:Skype_clone/screens/login_screen.dart';
+import 'package:Skype_clone/screens/search_screen.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/screens/home_screen.dart';
-import 'package:telemedicina/screens/login_screen.dart';
-import 'package:telemedicina/screens/search_screen.dart';
-import 'package:telemedicina/services/auth_methods.dart';
 
-void main() {
-  WebFirebase.initializeApp(
-      apiKey: "AIzaSyB3XaTquUje8JAFGVVR3nTRemEsMHHLdAY",
-      authDomain: "skype-426f7.firebaseapp.com",
-      databaseURL: "https://skype-426f7.firebaseio.com",
-      projectId: "skype-426f7",
-      storageBucket: "skype-426f7.appspot.com",
-      messagingSenderId: "328407005780",
-      appId: "1:328407005780:web:ffb997600969c8d71d4bc1");
-  runApp(MyApp());
-}
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
@@ -23,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  AuthMethods _authMethods = AuthMethods();
+  FirebaseRepository _repository = FirebaseRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +30,8 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark
       ),
       home: FutureBuilder(
-        future: _authMethods.getCurrentUser(),
-        builder: (context, AsyncSnapshot<WebFirebase.User> snapshot) {
+        future: _repository.getCurrentUser(),
+        builder: (context, AsyncSnapshot<User> snapshot) {
           if (snapshot.hasData) {
             return HomeScreen();
           } else {

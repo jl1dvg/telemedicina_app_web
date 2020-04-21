@@ -29,7 +29,6 @@ class Usuario {
     return data;
   }
 
-    // Named constructor
   Usuario.fromMap(Map<String, dynamic> mapData) {
     this.uid = mapData['uid'];
     this.name = mapData['name'];

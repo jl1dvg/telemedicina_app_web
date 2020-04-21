@@ -1,20 +1,31 @@
+import 'package:Skype_clone/provider/user_provider.dart';
+import 'package:Skype_clone/screens/pageviews/chat_list_screen.dart';
+import 'package:Skype_clone/utils/universal_variables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/screens/pageviews/chat_list_screen.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   PageController pageController;
   int _page = 0;
 
+  UserProvider userProvider;
+
   @override
   void initState() {
     super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      userProvider = Provider.of<UserProvider>(context, listen: false);
+      userProvider.refreshUser();
+    });
+
     pageController = PageController();
   }
 

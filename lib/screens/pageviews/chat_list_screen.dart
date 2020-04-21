@@ -1,10 +1,9 @@
+import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/utils/universal_variables.dart';
+import 'package:Skype_clone/utils/utilities.dart';
+import 'package:Skype_clone/widgets/appbar.dart';
+import 'package:Skype_clone/widgets/custom_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:telemedicina/services/auth_methods.dart';
-//import 'package:telemedicina/services/firebase_repository.dart';
-import 'package:telemedicina/utils/universal_variables.dart';
-import 'package:telemedicina/utils/utilities.dart';
-import 'package:telemedicina/widgets/appbar.dart';
-import 'package:telemedicina/widgets/custom_tile.dart';
 
 class ChatListScreen extends StatefulWidget {
   @override
@@ -12,8 +11,7 @@ class ChatListScreen extends StatefulWidget {
 }
 
 //global
-
-final AuthMethods _authMethods = AuthMethods();
+final FirebaseRepository _repository = FirebaseRepository();
 
 class _ChatListScreenState extends State<ChatListScreen> {
   String currentUserId;
@@ -22,10 +20,10 @@ class _ChatListScreenState extends State<ChatListScreen> {
   @override
   void initState() {
     super.initState();
-    _authMethods.getCurrentUser().then((usuario) {
+    _repository.getCurrentUser().then((user) {
       setState(() {
-        currentUserId = usuario.uid;
-        initials = Utils.getInitials(usuario.displayName);
+        currentUserId = user.uid;
+        initials = Utils.getInitials(user.displayName);
       });
     });
   }
@@ -112,8 +110,7 @@ class _ChatListContainerState extends State<ChatListContainer> {
                   CircleAvatar(
                     maxRadius: 30,
                     backgroundColor: Colors.grey,
-                    backgroundImage: NetworkImage(
-                        "https://yt3.ggpht.com/a/AGF-l7_zT8BuWwHTymaQaBptCy7WrsOD72gYGp-puw=s900-c-k-c0xffffffff-no-rj-mo"),
+                    backgroundImage: NetworkImage("https://yt3.ggpht.com/a/AGF-l7_zT8BuWwHTymaQaBptCy7WrsOD72gYGp-puw=s900-c-k-c0xffffffff-no-rj-mo"),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
@@ -121,10 +118,13 @@ class _ChatListContainerState extends State<ChatListContainer> {
                       height: 13,
                       width: 13,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: UniversalVariables.onlineDotColor,
-                          border: Border.all(
-                              color: UniversalVariables.blackColor, width: 2)),
+                        shape: BoxShape.circle,
+                        color: UniversalVariables.onlineDotColor,
+                        border: Border.all(
+                          color: UniversalVariables.blackColor,
+                          width: 2
+                        )
+                      ),
                     ),
                   )
                 ],
