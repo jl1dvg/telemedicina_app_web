@@ -1,5 +1,7 @@
 import 'package:Skype_clone/models/call.dart';
 import 'package:Skype_clone/resources/call_methods.dart';
+import 'package:Skype_clone/screens/chatscreens/widgets/cached_image.dart';
+import 'package:Skype_clone/utils/permissions.dart';
 import 'package:flutter/material.dart';
 
 
@@ -23,16 +25,16 @@ class PickupScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Incoming...",
+              "Lamada entrante...",
               style: TextStyle(
                 fontSize: 30,
               ),
             ),
             SizedBox(height: 50),
-            Image.network(
+            CachedImage(
               call.callerPic,
-              height: 150,
-              width: 150,
+              isRound: true,
+              radius: 180,
             ),
             SizedBox(height: 15),
             Text(
@@ -57,12 +59,13 @@ class PickupScreen extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.call),
                   color: Colors.green,
-                  onPressed: () => Navigator.push(
+                  onPressed: () async => await Permissions.cameraAndMicrophonePermissionsGranted()
+                  ? Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CallScreen(call: call),
                     ),
-                  ),
+                  ) : {},
                 )
               ],
             ),

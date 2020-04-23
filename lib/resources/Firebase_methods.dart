@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:Skype_clone/constants/strings.dart';
 import 'package:Skype_clone/models/message.dart';
 import 'package:Skype_clone/models/users.dart';
+import 'package:Skype_clone/provider/image_upload_provider.dart';
 import 'package:Skype_clone/utils/utilities.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase/firebase.dart' as WebFirebase;
+import 'package:firebase_storage/firebase_storage.dart';
 
 WebFirebase.User webFirebaseUser;
 
@@ -11,6 +15,8 @@ class FirebaseMethods {
   final WebFirebase.Auth webAuth = WebFirebase.auth();
   WebFirebase.GoogleAuthProvider webGoogleSignIn;
   static final Firestore firestore = Firestore.instance;
+
+  StorageReference _storageReference;
 
   static final CollectionReference _userCollection =
       _firestore.collection(USERS_COLLECTION);
@@ -103,5 +109,64 @@ class FirebaseMethods {
         .document(message.receiverId)
         .collection(message.senderId)
         .add(map);
+  }
+
+  Future<String> uploadImageToStorage(File imageFile) async {
+    // mention try catch later on
+
+    try {
+      _storageReference = FirebaseStorage.instance
+          .ref()
+          .child('${DateTime.now().millisecondsSinceEpoch}');
+      StorageUploadTask storageUploadTask =
+          _storageReference.putFile(imageFile);
+      var url = await (await storageUploadTask.onComplete).ref.getDownloadURL();
+      print(url);
+      return url;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void setImageMsg(String url, String receiverId, String senderId) async {
+    Message message;
+
+    message = Message.imageMessage(
+        message: "IMAGE",
+        receiverId: receiverId,
+        senderId: senderId,
+        photoUrl: url,
+        timestamp: Timestamp.now(),
+        type: 'image');
+
+    // create imagemap
+    var map = message.toImageMap();
+
+    // var map = Map<String, dynamic>();
+    await firestore
+        .collection(MESSAGES_COLLECTION)
+        .document(message.senderId)
+        .collection(message.receiverId)
+        .add(map);
+
+    firestore
+        .collection(MESSAGES_COLLECTION)
+        .document(message.receiverId)
+        .collection(message.senderId)
+        .add(map);
+  }
+
+  void uploadImage(File image, String receiverId, String senderId,
+      ImageUploadProvider imageUploadProvider) async {
+    // Set some loading val ue to db and show it to user
+    imageUploadProvider.setToLoading();
+
+    // Get url from the image bucket
+    String url = await uploadImageToStorage(image);
+
+    // Hide loading
+    imageUploadProvider.setToIdle();
+
+    setImageMsg(url, receiverId, senderId);
   }
 }

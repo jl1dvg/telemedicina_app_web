@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:Skype_clone/models/message.dart';
 import 'package:Skype_clone/models/users.dart';
+import 'package:Skype_clone/provider/image_upload_provider.dart';
 import 'package:Skype_clone/resources/Firebase_methods.dart';
 import 'package:firebase/firebase.dart';
+import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
+//import 'package:flutter/widgets.dart';
 
 class FirebaseRepository {
   FirebaseMethods _firebaseMethods = FirebaseMethods();
@@ -26,4 +32,12 @@ class FirebaseRepository {
   Future<void> addMessageToDb(
           Message message, Usuario sender, Usuario receiver) =>
       _firebaseMethods.addMessageToDb(message, sender, receiver);
+
+  void uploadImage({
+    @required File image,
+    @required String receiverId,
+    @required String senderId,
+    @required ImageUploadProvider imageUploadProvider
+  }) =>
+      _firebaseMethods.uploadImage(image, receiverId,  senderId, imageUploadProvider);
 }
