@@ -4,11 +4,17 @@ import 'package:Skype_clone/configs/agora_configs.dart';
 import 'package:Skype_clone/models/call.dart';
 import 'package:Skype_clone/provider/user_provider.dart';
 import 'package:Skype_clone/resources/call_methods.dart';
+<<<<<<< HEAD
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+=======
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+>>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 
 class CallScreen extends StatefulWidget {
   final Call call;
@@ -23,6 +29,80 @@ class CallScreen extends StatefulWidget {
 
 class _CallScreenState extends State<CallScreen> {
   final CallMethods callMethods = CallMethods();
+<<<<<<< HEAD
+  
+  UserProvider userProvider;
+
+  Future<void> _launched;
+
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        statusBarBrightness: Brightness.dark,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Widget _launchStatus(BuildContext context, AsyncSnapshot<void> snapshot) {
+    if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}');
+    } else {
+      return const Text('');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String toLaunch = 'https://jit.anti-copyright.com/' + widget.call.callerId;
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Comenzar teleconsulta",
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+            SizedBox(height: 50),
+            Image.network(
+              widget.call.receiverPic,
+              height: 150,
+              width: 150,
+            ),
+            SizedBox(height: 15),
+            Text(
+              widget.call.receiverName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            SizedBox(height: 75),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.video_call),
+                  color: Colors.green,
+                  onPressed: () => setState(() {
+                    _launched = _launchInBrowser(toLaunch);
+                  }),
+                ),
+                const Padding(padding: EdgeInsets.all(16.0)),
+              FutureBuilder<void>(future: _launched, builder: _launchStatus),
+              ],
+            ),
+=======
 
   UserProvider userProvider;
   StreamSubscription callStreamSubscription;
@@ -336,6 +416,7 @@ class _CallScreenState extends State<CallScreen> {
             _viewRows(),
             _panel(),
             _toolbar(),
+>>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
           ],
         ),
       ),

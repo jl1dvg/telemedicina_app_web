@@ -8,6 +8,9 @@ class UniversalVariables {
   static final Color onlineDotColor = Color(0xff46dc64);
   static final Color lightBlueColor = Color(0xff0077d7);
   static final Color separatorColor = Color(0xff272c35);
+  static final Color azulPrincial = Colors.lightBlue[900];
+    static final Color verdePrincial = Colors.teal[300];
+
 
   static final Color gradientColorStart = Color(0xff00b6f3);
   static final Color gradientColorEnd = Color(0xff0184dc);

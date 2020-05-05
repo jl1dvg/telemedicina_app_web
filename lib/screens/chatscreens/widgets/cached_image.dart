@@ -44,4 +44,8 @@
         return Image.network(noImageAvailable, fit: BoxFit.cover);
       }
     }
+<<<<<<< HEAD
   }
+=======
+  }
+>>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb

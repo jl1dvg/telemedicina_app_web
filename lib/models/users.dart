@@ -38,4 +38,4 @@ class Usuario {
     this.state = mapData['state'];
     this.profilePhoto = mapData['profile_photo'];
   }
-}
+} 

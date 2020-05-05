@@ -1,5 +1,5 @@
 import 'package:Skype_clone/models/users.dart';
-import 'package:Skype_clone/resources/firebase_repository.dart';
+import 'package:Skype_clone/resources/auth_methods.dart';
 import 'package:Skype_clone/screens/chatscreens/chat_screen.dart';
 import 'package:Skype_clone/utils/universal_variables.dart';
 import 'package:Skype_clone/widgets/custom_tile.dart';
@@ -15,7 +15,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  FirebaseRepository _repository = FirebaseRepository();
+  final AuthMethods _authMethods = AuthMethods();
 
   List<Usuario> userList;
   String query = "";
@@ -25,8 +25,8 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
 
-    _repository.getCurrentUser().then((User user) {
-      _repository.fetchAllUsers(user).then((List<Usuario> list) {
+    _authMethods.getCurrentUser().then((User user) {
+      _authMethods.fetchAllUsers(user).then((List<Usuario> list) {
         setState(() {
           userList = list;
         });
@@ -85,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   buildSuggestions(String query) {
     final List<Usuario> suggestionList = query.isEmpty
-        ? []
+        ? userList.toList()
         : userList.where((Usuario usuario) {
             String _getUsername = usuario.username.toLowerCase();
             String _query = query.toLowerCase();

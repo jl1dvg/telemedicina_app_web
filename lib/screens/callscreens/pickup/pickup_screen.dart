@@ -1,7 +1,11 @@
 import 'package:Skype_clone/models/call.dart';
 import 'package:Skype_clone/resources/call_methods.dart';
+<<<<<<< HEAD
+import 'package:Skype_clone/screens/callscreens/receiver_screen.dart';
+=======
 import 'package:Skype_clone/screens/chatscreens/widgets/cached_image.dart';
 import 'package:Skype_clone/utils/permissions.dart';
+>>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 import 'package:flutter/material.dart';
 
 

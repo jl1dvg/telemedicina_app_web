@@ -2,30 +2,28 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Skype_clone">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
-  <title>Skype_clone</title>
-  <link rel="manifest" href="manifest.json">
+  <title>ConsulMed</title>
+  <!--ALWAYS COMES HERE-->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+
+  <!-- Load the MobileNet model. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0">
+  </script>
 </head>
-<body>
+<body id='body-container'>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+
 <!--  From CDN-->
-<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/init.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -42,6 +40,14 @@
   firebase.initializeApp(firebaseConfig);
 </script>
 
+<!-- CUSTOM JS -->
+<script src="js/custom.js"></script>
+<script src="js/ml/ml.js"></script>
+<!-- <script src="js/ml/iris/data.js"></script> -->
+<script src="js/ml/mobilenet.js"></script>
+
+<script defer src="main.dart.js?version=5" type="application/javascript"></script>
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
@@ -49,6 +55,6 @@
       });
     }
   </script>
-  <script src="main.dart.js" type="application/javascript"></script>
-</body>
+    <script defer src="main.dart.js?version=5" type="application/javascript"></script>
+  </body>
 </html>

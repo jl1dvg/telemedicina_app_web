@@ -4,9 +4,14 @@ import 'package:Skype_clone/constants/strings.dart';
 import 'package:Skype_clone/enum/view_state.dart';
 import 'package:Skype_clone/models/message.dart';
 import 'package:Skype_clone/models/users.dart';
+<<<<<<< HEAD
+import 'package:Skype_clone/resources/auth_methods.dart';
+import 'package:Skype_clone/resources/chat_methods.dart';
+=======
 import 'package:Skype_clone/provider/image_upload_provider.dart';
 import 'package:Skype_clone/resources/firebase_repository.dart';
 //import 'package:Skype_clone/screens/chatscreens/widgets/cached_image.dart';
+>>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 import 'package:Skype_clone/utils/call_utilities.dart';
 import 'package:Skype_clone/utils/permissions.dart';
 import 'package:Skype_clone/utils/universal_variables.dart';
@@ -30,7 +35,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController textFieldController = TextEditingController();
-  FirebaseRepository _repository = FirebaseRepository();
+  ChatMethods _chatMethods = ChatMethods();
+  AuthMethods _authMethods = AuthMethods();
 
   ScrollController _listScrollController = ScrollController();
 
@@ -46,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
 
-    _repository.getCurrentUser().then((usuario) {
+    _authMethods.getCurrentUser().then((usuario) {
       _currentUserId = usuario.uid;
 
       setState(() {
@@ -289,7 +295,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
       textFieldController.text = "";
 
-      _repository.addMessageToDb(_message, sender, widget.receiver);
+      _chatMethods.addMessageToDb(_message, sender, widget.receiver);
     }
 
     return Container(
