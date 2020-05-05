@@ -160,8 +160,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.2"
-<<<<<<< HEAD
-=======
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -169,7 +167,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.7"
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -222,8 +219,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.12"
-<<<<<<< HEAD
-=======
   image_picker:
     dependency: "direct main"
     description:
@@ -231,7 +226,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.5+2"
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
   intl:
     dependency: transitive
     description:
@@ -461,7 +455,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
-<<<<<<< HEAD
   url_launcher:
     dependency: "direct main"
     description:
@@ -490,8 +483,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
-=======
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
   uuid:
     dependency: transitive
     description:
