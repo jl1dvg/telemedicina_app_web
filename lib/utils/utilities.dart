@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 import 'package:Skype_clone/enum/user_state.dart';
-=======
 import 'dart:io';
 import 'dart:math';
 import 'package:image/image.dart' as Im;
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:path_provider/path_provider.dart';
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 
 class Utils {
   static String getUsername(String email) {
@@ -21,7 +18,6 @@ class Utils {
     return firstNameInitial + lastNameInitial;
   }
 
-<<<<<<< HEAD
   static int stateToNum(UserState userState) {
     switch (userState) {
       case UserState.Offline:
@@ -48,7 +44,6 @@ class Utils {
     }
   }
 }
-=======
   static Future<File> pickImage({@required ImageSource source}) async {
     File selectedImage = await ImagePicker.pickImage(source: source);
     return await compressImage(selectedImage);
@@ -66,4 +61,3 @@ class Utils {
       ..writeAsBytesSync(Im.encodeJpg(image, quality: 85));
   }
 }
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
