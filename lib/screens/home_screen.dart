@@ -1,12 +1,9 @@
 import 'package:Skype_clone/enum/user_state.dart';
 import 'package:Skype_clone/provider/user_provider.dart';
-<<<<<<< HEAD
 import 'package:Skype_clone/resources/auth_methods.dart';
 import 'package:Skype_clone/screens/callscreens/pickup/pickup_layout.dart';
 import 'package:Skype_clone/screens/contacto_screen.dart';
-=======
 import 'package:Skype_clone/screens/callscreens/pickup/pickup_layout.dart';
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 import 'package:Skype_clone/screens/pageviews/chat_list_screen.dart';
 import 'package:Skype_clone/utils/universal_variables.dart';
 import 'package:flutter/cupertino.dart';
@@ -104,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     return PickupLayout(
       scaffold: Scaffold(
-<<<<<<< HEAD
         backgroundColor: Colors.white,
         body: PageView(
           children: <Widget>[
@@ -117,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               style: TextStyle(color: UniversalVariables.azulPrincial),
             )),
             Container(child: ChatListScreen()),
-=======
         backgroundColor: UniversalVariables.blackColor,
         body: PageView(
           children: <Widget>[
@@ -134,13 +129,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               "Contact Screen",
               style: TextStyle(color: Colors.white),
             )),
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
           ],
           controller: pageController,
           onPageChanged: onPageChanged,
           physics: NeverScrollableScrollPhysics(),
-<<<<<<< HEAD
-=======
         ),
         bottomNavigationBar: Container(
           child: Padding(
@@ -195,7 +187,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               currentIndex: _page,
             ),
           ),
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
         ),
       ),
     );
