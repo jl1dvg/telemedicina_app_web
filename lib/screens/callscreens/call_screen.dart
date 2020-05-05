@@ -4,17 +4,14 @@ import 'package:Skype_clone/configs/agora_configs.dart';
 import 'package:Skype_clone/models/call.dart';
 import 'package:Skype_clone/provider/user_provider.dart';
 import 'package:Skype_clone/resources/call_methods.dart';
-<<<<<<< HEAD
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-=======
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
 
 class CallScreen extends StatefulWidget {
   final Call call;
@@ -29,8 +26,7 @@ class CallScreen extends StatefulWidget {
 
 class _CallScreenState extends State<CallScreen> {
   final CallMethods callMethods = CallMethods();
-<<<<<<< HEAD
-  
+
   UserProvider userProvider;
 
   Future<void> _launched;
@@ -102,7 +98,6 @@ class _CallScreenState extends State<CallScreen> {
               FutureBuilder<void>(future: _launched, builder: _launchStatus),
               ],
             ),
-=======
 
   UserProvider userProvider;
   StreamSubscription callStreamSubscription;
@@ -416,7 +411,6 @@ class _CallScreenState extends State<CallScreen> {
             _viewRows(),
             _panel(),
             _toolbar(),
->>>>>>> 8d3b72fdf2b716d41b68ec03e4bb3e102d0f49cb
           ],
         ),
       ),
